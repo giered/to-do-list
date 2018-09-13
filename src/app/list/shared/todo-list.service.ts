@@ -16,6 +16,7 @@ const TODOS: ITodo[] = [
     dueDate: new Date('1/1/2018'),
     completed: false,
     location: 'ILW',
+    details: 'Here are some further details I need to know.'
   },
   {
     title: 'Get Groceries',
@@ -24,5 +25,6 @@ const TODOS: ITodo[] = [
     dueDate: new Date('09/20/2018'),
     completed: false,
     location: 'Store',
+    details: 'Here are some further details I need to know.'
   },
 ];

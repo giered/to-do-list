@@ -1,9 +1,12 @@
+<div [routerLink]="['/todo']">
+<h1>Your To Do List</h1>
+<hr/>
 <div class="row">
   <div class="col-md-2">
     <!-- // Checkbox goes here -->
   </div>
   <div class="col-md-8">
-    <div *ngFor="let todoItem of todoItems" class="card">
+    <div *ngFor="let todoItem of todoItems" class="card pointable">
       <div class="card-body">
         <div class="card-title">
           <h4>{{ todoItem.title | uppercase }}</h4>
@@ -13,8 +16,10 @@
           <div>Due By: {{ todoItem.dueDate | date}}</div>
           <div>Category: {{ todoItem.category }}</div>
           <div>Location: {{ todoItem.location }}</div>
+          <div>Details: {{ todoItem.details }}</div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
