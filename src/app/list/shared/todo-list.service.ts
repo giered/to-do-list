@@ -13,7 +13,7 @@ const TODOS: ITodo[] = [
     title: 'Finish Program',
     priority: 1,
     category: 'Work',
-    dueDate: new Date('1/1/2018'),
+    dueDate: new Date('12/1/2018'),
     completed: false,
     location: 'ILW',
     details: 'Here are some further details I need to know.'
@@ -27,4 +27,13 @@ const TODOS: ITodo[] = [
     location: 'Store',
     details: 'Here are some further details I need to know.'
   },
+  {
+    title: 'Last in List',
+    priority: 1,
+    category: 'Test',
+    dueDate: new Date('09/22/2018'),
+    completed: false,
+    location: 'ILW',
+    details: 'Testing...'
+  }
 ];
