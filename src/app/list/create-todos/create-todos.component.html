@@ -25,15 +25,19 @@
         <div class="form-group" [ngClass]="{'error': category.invalid && category.dirty }">
           <label for="category">Category: </label>
           <em *ngIf="category.invalid && (category.dirty || category.touched)">Required</em>
-          <select formControlName="category" required class="form-control">
-            <option value="">Select category...</option>
-            <option value="1">Create new category...</option>
-            <option>Others in an array??</option>
-          </select>
+          <div class="input-group">
+            <select formControlName="category" required class="form-control">
+              <option value="">Select category...</option>
+              <option *ngFor="let category of categories; let i = index" value="{{i}}">{{category}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-secondary" (click)="createCategory()">Add New Category</button>
+            </div>
+          </div>
         </div>
-        <div class="form-group"[ngClass]="{'error': dueDate.invalid && dueDate.dirty }">
-            <label for="dueDate">Due date: </label>
-            <em *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">Required</em>
+        <div class="form-group" [ngClass]="{'error': dueDate.invalid && dueDate.dirty }">
+          <label for="dueDate">Due date: </label>
+          <em *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">Required</em>
           <div class="input-group">
             <input formControlName="dueDate" required ngbDatepicker #d="ngbDatepicker" name="dueDate" type="text" class="form-control"
               placeholder="mm/dd/yyyy" />
@@ -45,7 +49,15 @@
         <div class="form-group" [ngClass]="{'error': location.invalid && location.dirty }">
           <label for="location">Location: </label>
           <em *ngIf="location.invalid && (location.dirty || location.touched)">Required</em>
-          <input formControlName="location" required name="location" type="text" class="form-control" />
+          <div class="input-group">
+            <select formControlName="location" required class="form-control">
+              <option value="">Select location...</option>
+              <option *ngFor="let location of locations; let i = index" value={{i}}>{{location}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-secondary" (click)="createLocation()">Add New Location</button>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="details">Details: (optional) </label>

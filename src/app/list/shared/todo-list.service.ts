@@ -3,10 +3,32 @@ import { ITodo } from '../list-todo.model';
 
 @Injectable()
 export class TodoListService {
-  getTodos(): ITodo[] {
+  getTodos() {
     return TODOS;
   }
+  getCategories() {
+    CATEGORIES.sort();
+    return CATEGORIES;
+  }
+  getLcations() {
+    LOCATIONS.sort();
+    return LOCATIONS;
+  }
+
+  addCategory(value: string) {
+    CATEGORIES.push(value);
+    CATEGORIES.sort();
+  }
+
+  addLocation(value: string) {
+    LOCATIONS.push(value);
+    LOCATIONS.sort();
+  }
 }
+
+const CATEGORIES = ['Errands', 'Work', 'Test'];
+
+const LOCATIONS = ['ILW', 'Store', 'Test'];
 
 const TODOS: ITodo[] = [
   {
