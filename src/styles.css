@@ -1,3 +1,7 @@
+:focus {
+  outline: none !important;
+}
+
 .pointable {
   cursor: pointer;
 }
@@ -11,4 +15,12 @@
   text-decoration: none;
   padding: 10px 15px;
   color: white;
+}
+
+h1 {
+  padding-top: 15px;
+}
+
+[hidden] {
+  display: none !important;
 }

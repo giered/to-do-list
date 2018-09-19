@@ -6,4 +6,5 @@ export interface ITodo {
   completed: boolean;
   location: string;
   details: string;
+  dateCompleted: Date;
 }

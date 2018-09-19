@@ -24,7 +24,8 @@
         </div>
         <div class="form-group" [ngClass]="{'error': category.invalid && category.dirty }">
           <label for="category">Category: </label>
-          <em *ngIf="category.invalid && (category.dirty || category.touched)">Required</em>
+          <em *ngIf="category.invalid && (category.dirty || category.touched)">Please select a category or create a new
+            one.</em>
           <div class="input-group">
             <select formControlName="category" required class="form-control">
               <option value="">Select category...</option>
@@ -48,7 +49,8 @@
         </div>
         <div class="form-group" [ngClass]="{'error': location.invalid && location.dirty }">
           <label for="location">Location: </label>
-          <em *ngIf="location.invalid && (location.dirty || location.touched)">Required</em>
+          <em *ngIf="location.invalid && (location.dirty || location.touched)">Please select a location or create a new
+            one.</em>
           <div class="input-group">
             <select formControlName="location" required class="form-control">
               <option value="">Select location...</option>
