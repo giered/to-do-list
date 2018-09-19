@@ -19,7 +19,7 @@ export class CreateTodosComponent implements OnInit {
   categories: string[];
   locations: string[];
 
-  /// Initialize the elements of the Form with required validators.
+
   title = new FormControl('', Validators.required);
   priority = new FormControl('', Validators.required);
   category = new FormControl('', Validators.required);
@@ -27,7 +27,6 @@ export class CreateTodosComponent implements OnInit {
   location = new FormControl('', Validators.required);
   details = new FormControl('');
 
-  /// Create the form with the necessary elements
   newTodoForm: FormGroup = this.fb.group({
     title: this.title,
     priority: this.priority,
@@ -40,18 +39,15 @@ export class CreateTodosComponent implements OnInit {
   constructor(private fb: FormBuilder, private calendar: NgbCalendar, private router: Router,
      private listService: TodoListService, private modalService: NgbModal) {}
 
-  /// Retrieve the list of categories and locations from the list service.
   ngOnInit(): void {
     this.categories = this.listService.getCategories();
     this.locations = this.listService.getLcations();
   }
 
-  /// Cancel buttont that reroutes the user back to the Todo List.
   cancel() {
     this.router.navigate(['/todo']);
   }
 
-  /// Initializes the modal for a new Category name.
   createCategory() {
     const modalRef = this.modalService.open(CreateValueComponent);
     modalRef.componentInstance.title = 'Category';
@@ -65,7 +61,6 @@ export class CreateTodosComponent implements OnInit {
     });
   }
 
-  /// Initializes the modal for a new Location name.
   createLocation() {
     const modalRef = this.modalService.open(CreateValueComponent);
     modalRef.componentInstance.title = 'Location';
