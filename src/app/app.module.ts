@@ -11,6 +11,8 @@ import { TodoListService } from './list/shared/todo-list.service';
 import { CreateTodosComponent } from './list/create-todos/create-todos.component';
 import { NavBarComponent } from './navigation/navbar.component';
 import { CreateValueComponent } from './list/create-todos/create-new-value.component';
+import { DoneCheckComponent } from './list/done-checkbox.component';
+import { ListDoneComponent } from './list/list-done.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CreateValueComponent } from './list/create-todos/create-new-value.compo
     ListComponent,
     CreateTodosComponent,
     NavBarComponent,
-    CreateValueComponent
+    CreateValueComponent,
+    DoneCheckComponent,
+    ListDoneComponent
   ],
   imports: [
     BrowserModule,

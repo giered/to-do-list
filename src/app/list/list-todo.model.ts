@@ -1,3 +1,5 @@
+
+/// Model item that Todos should follow.
 export interface ITodo {
   title: string;
   priority: number;

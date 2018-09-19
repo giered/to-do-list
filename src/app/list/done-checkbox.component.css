@@ -1,0 +1,28 @@
+.doneWidgetContainer {
+  margin-right:-24px;
+  padding-right:10px;
+  float: right;
+}
+
+.doneWidget {
+  height: auto;
+  padding-top: 7px;
+  border-radius: 21px;
+}
+
+.card {
+  outline: black;
+}
+
+.doneButton {
+  margin-top: 1px;
+  cursor:pointer;
+}
+
+.doneButton i {
+  font-size: 150%;
+}
+
+.doneText  {
+  padding-left: 20%;
+}
