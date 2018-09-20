@@ -6,41 +6,67 @@
 
     </div>
     <div class="col-md-6">
-      <form [formGroup]="todoForm">
-        <div class="form-group">
+      <form [formGroup]="newTodoForm">
+        <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty }">
           <label for="title">Title: </label>
-          <input formControlName="title" id="title" type="text" class="form-control" placeholder="To Do Title..." />
+          <em *ngIf="title.invalid && (title.dirty || title.touched)">Required</em>
+          <input formControlName="title" required type="text" class="form-control" placeholder="To Do Title..." />
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'error': priority.invalid && priority.dirty }">
           <label for="priority">Priority: </label>
-          <select formControlName="priority" class="form-control">
+          <em *ngIf="priority.invalid && (priority.dirty || priority.touched)">Required</em>
+          <select formControlName="priority" required class="form-control">
             <option value="">Select priority...</option>
             <option value="1">High</option>
             <option value="2">Medium</option>
             <option value="3">Low</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'error': category.invalid && category.dirty }">
           <label for="category">Category: </label>
-          <select formControlName="category" class="form-control">
-            <option value="">Select category...</option>
-            <option value="1">Create new category...</option>
-            <option>Others in an array??</option>
-          </select>
+          <em *ngIf="category.invalid && (category.dirty || category.touched)">Please select a category or create a new
+            one.</em>
+          <div class="input-group">
+            <select formControlName="category" required class="form-control">
+              <option value="">Select category...</option>
+              <option *ngFor="let category of categories; let i = index" value="{{i}}">{{category}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-secondary" (click)="createCategory()">Add New Category</button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'error': dueDate.invalid && dueDate.dirty }">
           <label for="dueDate">Due date: </label>
-          <input formControlName="dueDate" id="dueDate" type="text" class="form-control" placeholder="TODO: add datePicker" />
+          <em *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">Required</em>
+          <div class="input-group">
+            <input formControlName="dueDate" required ngbDatepicker #d="ngbDatepicker" name="dueDate" type="text" class="form-control"
+              placeholder="mm/dd/yyyy" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
         </div>
-
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'error': location.invalid && location.dirty }">
           <label for="location">Location: </label>
-          <input formControlName="location" id="location" type="text" class="form-control" />
+          <em *ngIf="location.invalid && (location.dirty || location.touched)">Please select a location or create a new
+            one.</em>
+          <div class="input-group">
+            <select formControlName="location" required class="form-control">
+              <option value="">Select location...</option>
+              <option *ngFor="let location of locations; let i = index" value={{i}}>{{location}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-secondary" (click)="createLocation()">Add New Location</button>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="details">Details: (optional) </label>
-          <textarea formControlName="details" id="details" rows=3 class="form-control" placeholder="Extra details if needed..."></textarea>
+          <textarea formControlName="details" name="details" rows=3 class="form-control" placeholder="Extra details if needed..."></textarea>
         </div>
+        <button type="submit" [disabled]="newTodoForm.invalid" class="btn btn-primary">Save</button>
+        <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
       </form>
     </div>
   </div>

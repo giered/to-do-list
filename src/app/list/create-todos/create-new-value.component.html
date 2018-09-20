@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add {{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="newValueForm" (ngSubmit)="submitForm()">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="newValue">{{title}} Name:</label>
+      <input formControlName="newValue" class="form-control" type="text" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success" [disabled]="!newValueForm.valid">Add {{title}}</button>
+  </div>
+</form>
