@@ -6,6 +6,7 @@ import { TodoListService } from '../shared/todo-list.service';
 import { NgbDateStruct, NgbCalendar, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateENParserFormatter } from './ngb-date-en-parser-formatter';
 import { CreateValueComponent } from './create-new-value.component';
+import { ITodo } from '../list-todo.model';
 
 @Component({
   selector: 'td-create-todos',
@@ -18,6 +19,9 @@ export class CreateTodosComponent implements OnInit {
   date: {day: number, month: number, year: number};
   categories: string[];
   locations: string[];
+  minimumDate: NgbDateStruct;
+
+  today = new Date();
 
   /// Initialize the elements of the Form with required validators.
   title = new FormControl('', Validators.required);
@@ -44,10 +48,33 @@ export class CreateTodosComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.listService.getCategories();
     this.locations = this.listService.getLcations();
+
+    // this prevents dates before the current date from being selected.
+    this.minimumDate = {
+      year: this.today.getFullYear(),
+      month: this.today.getMonth() + 1,
+      day: this.today.getDate()
+    };
   }
 
   /// Cancel buttont that reroutes the user back to the Todo List.
   cancel() {
+    this.router.navigate(['/todo']);
+  }
+
+  /// Save Todos into the array of uncompleted tasks.
+  saveTodo(formValues) {
+    const todoItem: ITodo = {
+      title: formValues.title,
+      priority: formValues.priority,
+      category: formValues.category,
+      dueDate: new Date(formValues.dueDate.year, formValues.dueDate.month, formValues.dueDate.day),
+      completed: false,
+      location: formValues.location,
+      details: formValues.details,
+      dateCompleted: null
+    };
+    this.listService.createTodo(todoItem);
     this.router.navigate(['/todo']);
   }
 

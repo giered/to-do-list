@@ -6,7 +6,7 @@
 
     </div>
     <div class="col-md-6">
-      <form [formGroup]="newTodoForm">
+      <form [formGroup]="newTodoForm"  (ngSubmit)="saveTodo(newTodoForm.value)">
         <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty }">
           <label for="title">Title: </label>
           <em *ngIf="title.invalid && (title.dirty || title.touched)">Required</em>
@@ -40,7 +40,7 @@
           <label for="dueDate">Due date: </label>
           <em *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">Required</em>
           <div class="input-group">
-            <input formControlName="dueDate" required ngbDatepicker #d="ngbDatepicker" name="dueDate" type="text" class="form-control"
+            <input formControlName="dueDate" [minDate]="minimumDate" required ngbDatepicker #d="ngbDatepicker" name="dueDate" type="text" class="form-control"
               placeholder="mm/dd/yyyy" />
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>

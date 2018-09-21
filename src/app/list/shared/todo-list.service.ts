@@ -6,6 +6,11 @@ export class TodoListService {
   getTodos() {
     return TODOS;
   }
+
+  getCompletedTodos() {
+    return COMPLETED_TODOS;
+  }
+
   getCategories() {
     CATEGORIES.sort();
     return CATEGORIES;
@@ -13,6 +18,10 @@ export class TodoListService {
   getLcations() {
     LOCATIONS.sort();
     return LOCATIONS;
+  }
+
+  createTodo(todoItem: ITodo) {
+    TODOS.push(todoItem);
   }
 
   addCategory(value: string) {
@@ -23,6 +32,24 @@ export class TodoListService {
   addLocation(value: string) {
     LOCATIONS.push(value);
     LOCATIONS.sort();
+  }
+
+  changeStatus(completeStatus: boolean, todoItem: ITodo) {
+    todoItem.completed = completeStatus;
+
+    if (todoItem.completed) {
+      const index = TODOS.indexOf(todoItem);
+      todoItem.dateCompleted = new Date();
+
+      COMPLETED_TODOS.push(todoItem);
+      TODOS.splice(index, 1);
+    } else {
+      const index = COMPLETED_TODOS.indexOf(todoItem);
+      todoItem.dateCompleted = null;
+
+      TODOS.push(todoItem);
+      COMPLETED_TODOS.splice(index, 1);
+    }
   }
 }
 
@@ -60,5 +87,37 @@ const TODOS: ITodo[] = [
     location: 'ILW',
     details: 'Testing...',
     dateCompleted: null
-  }
+  },
+  {
+    title: 'Test Todo',
+    priority: 3,
+    category: 'Work',
+    dueDate: new Date('09/12/2018'),
+    completed: false,
+    location: 'ILW',
+    details: 'Here are some further details I need to know.',
+    dateCompleted: null
+  },
+  {
+    title: 'Yet Another Todo',
+    priority: 1,
+    category: 'Work',
+    dueDate: new Date('02/19/2019'),
+    completed: false,
+    location: 'Bubbles',
+    details: 'Here are some further details I need to know.',
+    dateCompleted: null
+  },
+  {
+    title: 'Neat...',
+    priority: 2,
+    category: 'Test',
+    dueDate: new Date('06/17/2020'),
+    completed: false,
+    location: 'ILW',
+    details: 'Testing...',
+    dateCompleted: null
+  },
 ];
+
+const COMPLETED_TODOS: ITodo[] = [];

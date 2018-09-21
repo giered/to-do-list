@@ -11,62 +11,37 @@ export class ListComponent implements OnInit {
   todoItems: ITodo[];
   completedTodos: ITodo[];
 
-  constructor(
-    private todoListService: TodoListService,
-  ) {}
+  currentDate = new Date();
+  tomorrowDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1);
+
+  constructor(private todoListService: TodoListService) {}
 
   /// Initialize arrays for the list.
   ngOnInit() {
-    this.todoItems = this.isComplete(false);
-    this.completedTodos = this.isComplete(true);
+    this.todoItems = this.todoListService.getTodos();
+    this.completedTodos = this.todoListService.getCompletedTodos();
     if (this.todoItems) {
       this.todoItems.sort(sortByPriority);
     }
-  }
-
-  /// Check if the item has a completed flag and push it to the appropriate list.
-  isComplete(isComplete: boolean): ITodo[] {
-    const todoItems = this.todoListService.getTodos();
-    if (!isComplete) {
-      const needTodo: ITodo[] = [];
-      todoItems.forEach(item => {
-        if (!item.completed) {
-          needTodo.push(item);
-        }
-      });
-      return needTodo;
+    if (this.completedTodos.length > 5) {
+      this.completedTodos = this.completedTodos.slice(
+        Math.max(this.completedTodos.length - 5, 1)
+      ).reverse();
     } else {
-      const completeTodo: ITodo[] = [];
-      todoItems.forEach(item => {
-        if (item.completed) {
-          completeTodo.push(item);
-        }
-      });
-      return completeTodo;
+      this.completedTodos = this.completedTodos.slice().reverse();
     }
   }
 
   /// Toggle the completed flag on the todo item.
   toggleCheck(todoItem: ITodo) {
     if (!todoItem.completed) {
-      todoItem.completed = true;
-      const index = this.todoItems.indexOf(todoItem);
-      todoItem.dateCompleted = new Date();
-
-      // Add the item to the completed array and remove it from the original array.
-      this.completedTodos.push(todoItem);
-      this.todoItems.splice(index, 1);
-
-      // Sort the completed list based on the date it was completed.
-      this.completedTodos.sort(sortByDateComplete);
+      this.todoListService.changeStatus(true, todoItem);
+      this.ngOnInit();
+      this.todoItems.sort(sortByPriority);
     } else {
-      todoItem.completed = false;
-      todoItem.dateCompleted = null;
-      const index = this.completedTodos.indexOf(todoItem);
-
-      // Add the item to the original array and remove it from the completed array.
-      this.todoItems.push(todoItem);
-      this.completedTodos.splice(index, 1);
+      this.todoListService.changeStatus(false, todoItem);
+      this.ngOnInit();
+      this.todoItems.sort(sortByPriority);
     }
   }
 }
@@ -85,7 +60,7 @@ function sortByPriority(s1: ITodo, s2: ITodo) {
   }
 }
 
-/// Sort the array based on the date it was completed.
+/* /// Sort the array based on the date it was completed.
 function sortByDateComplete(s1: ITodo, s2: ITodo) {
   if (s1.dateCompleted > s2.dateCompleted) {
     return 0;
@@ -94,4 +69,4 @@ function sortByDateComplete(s1: ITodo, s2: ITodo) {
   } else {
     return -1;
   }
-}
+} */
