@@ -57,7 +57,7 @@ export class CreateTodosComponent implements OnInit {
     };
   }
 
-  /// Cancel buttont that reroutes the user back to the Todo List.
+  /// Cancel button that reroutes the user back to the Todo List.
   cancel() {
     this.router.navigate(['/todo']);
   }

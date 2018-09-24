@@ -10,10 +10,6 @@
   border-radius: 21px;
 }
 
-.card {
-  outline: black;
-}
-
 .doneButton {
   margin-top: 1px;
   cursor:pointer;

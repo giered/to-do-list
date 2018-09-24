@@ -32,7 +32,7 @@
               <option *ngFor="let category of categories; let i = index" value="{{i}}">{{category}}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-secondary" (click)="createCategory()">Add New Category</button>
+              <button type="button" class="btn btn-secondary" (click)="createCategory()">Add New Category</button>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
               <option *ngFor="let location of locations; let i = index" value={{i}}>{{location}}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-secondary" (click)="createLocation()">Add New Location</button>
+              <button type="button" class="btn btn-secondary" (click)="createLocation()">Add New Location</button>
             </div>
           </div>
         </div>

@@ -25,11 +25,13 @@ export class TodoListService {
   }
 
   addCategory(value: string) {
+    value = value[0].toUpperCase() + value.slice(1);
     CATEGORIES.push(value);
     CATEGORIES.sort();
   }
 
   addLocation(value: string) {
+    value = value[0].toUpperCase() + value.slice(1);
     LOCATIONS.push(value);
     LOCATIONS.sort();
   }

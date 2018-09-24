@@ -2,3 +2,25 @@ h2 {
   padding-top: 20px;
   padding: 15px;
 }
+
+.done {
+  opacity: 0.6;
+}
+
+.row {
+  padding-bottom: 10px;
+}
+
+.card-header {
+  height: 70px;
+}
+
+.card-text {
+  padding-left: 20px;
+}
+
+em {
+  float: right;
+  color: #e05c65;
+  padding-left: 10px;
+}

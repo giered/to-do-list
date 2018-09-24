@@ -13,6 +13,7 @@ import { NavBarComponent } from './navigation/navbar.component';
 import { CreateValueComponent } from './list/create-todos/create-new-value.component';
 import { DoneCheckComponent } from './list/done-checkbox.component';
 import { ListDoneComponent } from './list/list-done.component';
+import { CollapsibleTodoComponent } from './list/shared/collapsible-todo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListDoneComponent } from './list/list-done.component';
     NavBarComponent,
     CreateValueComponent,
     DoneCheckComponent,
-    ListDoneComponent
+    ListDoneComponent,
+    CollapsibleTodoComponent
   ],
   imports: [
     BrowserModule,

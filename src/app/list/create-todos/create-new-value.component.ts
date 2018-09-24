@@ -7,7 +7,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './create-new-value.component.html'
 })
 export class CreateValueComponent implements OnInit {
-  @Input() id: string;
   @Input() title: string;
   newValueForm: FormGroup;
   newValue: FormControl;

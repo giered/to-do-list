@@ -1,30 +1,38 @@
-<div [routerLink]="['/todo']">
+<div [routerLink]="['/todo']" style="display: block;">
   <h1>Your To Do List:</h1>
   <hr />
   <div>
-    <div *ngFor="let todoItem of todoItems" class="container">
+    <div style="float: left;">
+
+    </div>
+    <div *ngFor="let todoItem of todoItems">
       <div *ngIf="!todoItem.completed" class="row">
         <div class="col-md-1">
           <td-done (check)="toggleCheck(todoItem)" [checked]="todoItem.completed"></td-done>
         </div>
         <div class="col-md-8">
-          <div class="card pointable">
-            <div class="card-body">
-              <div [ngClass]="{
+          <td-collapse>
+            <div card-head>
+              <em *ngIf="todoItem.dueDate <= currentDate" class="text-right">PAST DUE!</em>
+              <div class="card-body">
+                <div [ngClass]="{
                 'bg-warning': todoItem.dueDate.toLocaleString() === tomorrowDate.toLocaleString(),
-                'bg-danger' : todoItem.dueDate.toLocaleString() === currentDate.toLocaleString()
-                }" class="card-header">
-                <h4>{{ todoItem.title | uppercase }}</h4>
-              </div>
-              <div class="card-text">
-                <div><b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" : "Low"}}</div>
-                <div><b>Due By:</b> {{ todoItem.dueDate | date }}</div>
-                <div><b>Category:</b> {{ todoItem.category }}</div>
-                <div><b>Location:</b> {{ todoItem.location }}</div>
-                <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+                'bg-danger' : todoItem.dueDate.toLocaleString() === currentDate.toLocaleString() || todoItem.dueDate <= currentDate
+                }"
+                  class="card-header">
+                  <h4>{{ todoItem.title | uppercase }}</h4>
+                </div>
               </div>
             </div>
-          </div>
+            <div class="card-text" card-details>
+              <div><b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" :
+                "Low"}}</div>
+              <div><b>Due By:</b> {{ todoItem.dueDate | date }}</div>
+              <div><b>Category:</b> {{ todoItem.category }}</div>
+              <div><b>Location:</b> {{ todoItem.location }}</div>
+              <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+            </div>\
+          </td-collapse>
         </div>
       </div>
     </div>
@@ -38,9 +46,9 @@
           <td-done (check)="toggleCheck(doneItem)" [checked]="doneItem.completed"></td-done>
         </div>
         <div class="col-md-8">
-          <div class="card pointable">
+          <div class="card pointable done">
             <div class="card-body">
-              <div class="card-title">
+              <div class="card-header">
                 <h4>{{ doneItem.title | uppercase }}</h4>
               </div>
               <div class="card-body">
