@@ -1,3 +1,5 @@
+
+/// Model item that Todos should follow.
 export interface ITodo {
   title: string;
   priority: number;
@@ -6,4 +8,5 @@ export interface ITodo {
   completed: boolean;
   location: string;
   details: string;
+  dateCompleted: Date;
 }
