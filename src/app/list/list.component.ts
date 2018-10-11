@@ -8,16 +8,41 @@ import { TodoListService } from './shared/todo-list.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  todoItems: ITodo[];
+  todos: ITodo[];
+  completedTodos: ITodo[];
+  todoCategories: string[];
+  todoLocations: string[];
 
-  constructor(private todoListService: TodoListService) {
+  filterCat = 'all';
+  filterLoc = 'all';
 
-  }
+  constructor(private todoListService: TodoListService) {}
 
+  /// Initialize arrays for the list.
   ngOnInit() {
-    this.todoItems = this.todoListService.getTodos();
+    this.todoCategories = this.todoListService.getCategories();
+    this.todoLocations = this.todoListService.getLocations();
+
+    this.todos = this.todoListService.getTodos();
+    this.updateCompletedTodos();
   }
 
+  updateCompletedTodos() {
+    this.completedTodos = this.todoListService.getCompletedTodos();
+    if (this.completedTodos) {
+      if (this.completedTodos.length > 5) {
+        this.completedTodos = this.completedTodos
+          .slice(Math.max(this.completedTodos.length - 5, 1))
+          .reverse();
+      } else {
+        this.completedTodos = this.completedTodos.slice().reverse();
+      }
+    }
+  }
 
-
+  /// Toggle the completed flag on the todo item.
+  toggleCheck(todoItem: ITodo) {
+    this.todoListService.changeStatus(false, todoItem);
+    this.ngOnInit();
+  }
 }

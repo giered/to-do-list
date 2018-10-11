@@ -1,25 +1,59 @@
-<div [routerLink]="['/todo']">
-<h1>Your To Do List</h1>
-<hr/>
-<div class="row">
-  <div class="col-md-2">
-    <!-- // Checkbox goes here -->
-  </div>
-  <div class="col-md-8">
-    <div *ngFor="let todoItem of todoItems" class="card pointable">
-      <div class="card-body">
-        <div class="card-title">
-          <h4>{{ todoItem.title | uppercase }}</h4>
+<div [routerLink]="['/todo']" style="display: block;">
+  <h1>Your To Do List:</h1>
+  <hr />
+  <div>
+    <div class="col-md-2" style="float: left;">
+      <div class="col-md-2">
+        <label>Categories:</label>
+        <div class="btn-group-vertical">
+          <button class="btn btn-secondary" (click)="filterCat='all'" [class.active]="filterCat==='all'">All</button>
+          <button *ngFor="let category of todoCategories" class="btn btn-secondary" [class.active]="filterCat===category"
+            (click)="filterCat=category">
+            {{category}}
+          </button>
         </div>
-        <div class="card-body">
-          <div>Priority: {{ todoItem.priority }}</div>
-          <div>Due By: {{ todoItem.dueDate | date}}</div>
-          <div>Category: {{ todoItem.category }}</div>
-          <div>Location: {{ todoItem.location }}</div>
-          <div>Details: {{ todoItem.details }}</div>
+      </div>
+      <hr />
+      <div class="col-md-2">
+        <label>Locations:</label>
+        <div class="btn-group-vertical">
+          <button class="btn btn-secondary" (click)="filterLoc='all'" [class.active]="filterLoc==='all'">All</button>
+          <button *ngFor="let location of todoLocations" class="btn btn-secondary" [class.active]="filterLoc===location"
+            (click)="filterLoc=location">
+            {{location}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 list">
+      <td-list-todo [catFilter]="filterCat" [locFilter]="filterLoc" [todoItems]="todos" (completeTodos)="updateCompletedTodos()"></td-list-todo>
+    </div>
+    <div style="clear: both;">
+      <hr />
+      <h2>Recently Completed:</h2>
+    </div>
+    <div *ngFor="let doneItem of completedTodos">
+      <div *ngIf="doneItem.completed" class="row">
+        <div class="col-md-1">
+          <td-done (check)="toggleCheck(doneItem)" [checked]="doneItem.completed"></td-done>
+        </div>
+        <div class="col-md-8">
+          <div class="card pointable done">
+            <div class="card-body">
+              <div class="card-header">
+                <h4>{{ doneItem.title | uppercase }}</h4>
+              </div>
+              <div class="card-body">
+                <div>Priority: {{ doneItem.priority }}</div>
+                <div>Date Completed: {{ doneItem.dateCompleted | date }}</div>
+                <div>Category: {{ doneItem.category }}</div>
+                <div>Location: {{ doneItem.location }}</div>
+                <div>Details: {{ doneItem.details }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

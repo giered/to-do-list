@@ -1,0 +1,31 @@
+<div *ngFor="let todoItem of visibleTodoItems">
+  <div *ngIf="!todoItem.completed" class="row">
+    <div class="col-md-1">
+      <td-done (check)="toggleCheck(todoItem)" [checked]="todoItem.completed"></td-done>
+    </div>
+    <div class="col-md-11">
+      <td-collapse>
+        <div card-head>
+          <em *ngIf="todoItem.dueDate <= currentDate" class="text-right">PAST DUE!</em>
+          <div class="card-body">
+            <div [ngClass]="{
+              'bg-warning': todoItem.dueDate.toLocaleString() === tomorrowDate.toLocaleString(),
+              'bg-danger' : todoItem.dueDate.toLocaleString() === currentDate.toLocaleString() || todoItem.dueDate <= currentDate
+              }"
+              class="card-header">
+              <h4>{{ todoItem.title | uppercase }}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-text" card-details>
+          <div><b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" :
+            "Low"}}</div>
+          <div><b>Due By:</b> {{ todoItem.dueDate | date }}</div>
+          <div><b>Category:</b> {{ todoItem.category }}</div>
+          <div><b>Location:</b> {{ todoItem.location }}</div>
+          <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+        </div>
+      </td-collapse>
+    </div>
+  </div>
+</div>

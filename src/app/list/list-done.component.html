@@ -1,0 +1,29 @@
+<div [routerLink]="['/todo/done']">
+  <h1>Your Done List:</h1>
+  <hr />
+  <h3 style="text-align: center">{{ pageHeading }}</h3>
+  <div *ngFor="let todoItem of completedTodos">
+    <div *ngIf="todoItem.completed" class="row">
+      <div class="col-md-1">
+        <td-done (check)="toggleCheck(todoItem)" [checked]="todoItem.completed"></td-done>
+      </div>
+      <div class="col-md-8">
+        <div class="card pointable">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>{{ todoItem.title | uppercase }}</h4>
+            </div>
+            <div class="card-body">
+                <div>
+                  <b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" : "Low"}}
+                </div>
+                <div><b>Completed On</b> {{ todoItem.dateCompleted | date }}</div>
+                <div><b>Category:</b> {{ todoItem.category }}</div>
+                <div><b>Location:</b> {{ todoItem.location }}</div>
+                <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
