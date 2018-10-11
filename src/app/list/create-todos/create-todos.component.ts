@@ -47,7 +47,7 @@ export class CreateTodosComponent implements OnInit {
   /// Retrieve the list of categories and locations from the list service.
   ngOnInit(): void {
     this.categories = this.listService.getCategories();
-    this.locations = this.listService.getLcations();
+    this.locations = this.listService.getLocations();
 
     // this prevents dates before the current date from being selected.
     this.minimumDate = {

@@ -3,12 +3,35 @@ h2 {
   padding: 15px;
 }
 
+.list {
+  float: left;
+}
+
+.btn-group {
+  display: block;
+  width: 100%
+}
+
+.btn-group button {
+  padding: 5px;
+  margin: 2px;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .done {
   opacity: 0.6;
 }
 
 .row {
   padding-bottom: 10px;
+}
+
+.card-text {
+  padding-bottom: 15px;
 }
 
 .card-header {

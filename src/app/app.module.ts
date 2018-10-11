@@ -14,6 +14,7 @@ import { CreateValueComponent } from './list/create-todos/create-new-value.compo
 import { DoneCheckComponent } from './list/done-checkbox.component';
 import { ListDoneComponent } from './list/list-done.component';
 import { CollapsibleTodoComponent } from './list/shared/collapsible-todo.component';
+import { TodoListComponent } from './list/list-todo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CollapsibleTodoComponent } from './list/shared/collapsible-todo.compone
     CreateValueComponent,
     DoneCheckComponent,
     ListDoneComponent,
-    CollapsibleTodoComponent
+    CollapsibleTodoComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
