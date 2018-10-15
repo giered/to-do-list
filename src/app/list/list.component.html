@@ -28,6 +28,10 @@
     <div class="col-md-8 list">
       <td-list-todo [catFilter]="filterCat" [locFilter]="filterLoc" [todoItems]="todos" (completeTodos)="updateCompletedTodos()"></td-list-todo>
     </div>
+    <div class="col-md-2" style="float: left">
+      <h3>Export To-Do List:</h3>
+      <button type="button" (click)="downloadFile(todos)">Export</button>
+    </div>
     <div style="clear: both;">
       <hr />
       <h2>Recently Completed:</h2>

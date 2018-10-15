@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITodo } from './list-todo.model';
 import { TodoListService } from './shared/todo-list.service';
+import { saveAs } from 'file-saver/dist/FileSaver.js';
 
 @Component({
   selector: 'td-list',
@@ -44,5 +45,16 @@ export class ListComponent implements OnInit {
   toggleCheck(todoItem: ITodo) {
     this.todoListService.changeStatus(false, todoItem);
     this.ngOnInit();
+  }
+
+  downloadFile(data: any) {
+    const REPLACER = (key, value) => value === null ? '' : value;
+    const HEADER = Object.keys(data[0]);
+    const csv = data.map(row => HEADER.map(fieldName => JSON.stringify(row[fieldName], REPLACER)).join(','));
+    csv.unshift(HEADER.join(','));
+    const csvArray = csv.join('\r\n');
+
+    const blob = new Blob([csvArray], { type: 'text/csv' });
+    saveAs(blob, 'Todos.csv');
   }
 }
