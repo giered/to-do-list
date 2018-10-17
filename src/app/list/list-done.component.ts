@@ -25,4 +25,9 @@ export class ListDoneComponent implements OnInit {
     this.listService.changeStatus(false, todoItem);
     this.ngOnInit();
   }
+
+  deleteTodo(item: ITodo) {
+    this.listService.deleteTodo(item);
+    this.ngOnInit();
+  }
 }

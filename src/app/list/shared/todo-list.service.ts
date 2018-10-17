@@ -11,11 +11,28 @@ export class TodoListService {
     return COMPLETED_TODOS;
   }
 
+  deleteTodo(todoItem: ITodo) {
+    const index = COMPLETED_TODOS.indexOf(todoItem);
+    COMPLETED_TODOS.splice(index, 1);
+  }
+
   getCategories() {
+    CATEGORIES = [];
+    TODOS.forEach(function(todoItem) {
+      if (CATEGORIES.indexOf(todoItem.category) === -1) {
+        CATEGORIES.push(todoItem.category);
+      }
+    });
     CATEGORIES.sort();
     return CATEGORIES;
   }
   getLocations() {
+    LOCATIONS = [];
+    TODOS.forEach(function(todoItem) {
+      if (LOCATIONS.indexOf(todoItem.location) === -1) {
+        LOCATIONS.push(todoItem.location);
+      }
+    });
     LOCATIONS.sort();
     return LOCATIONS;
   }
@@ -55,9 +72,9 @@ export class TodoListService {
   }
 }
 
-const CATEGORIES = ['Errands', 'Work', 'Test'];
+let CATEGORIES = [];
 
-const LOCATIONS = ['ILW', 'Nowhere', 'Store', 'Test'];
+let LOCATIONS = [];
 
 const TODOS: ITodo[] = [
   {

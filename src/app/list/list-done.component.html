@@ -10,17 +10,19 @@
       <div class="col-md-8">
         <div class="card pointable">
           <div class="card-body">
+            <i class="fas fa-times" style="float: right; font-size: 2.5em;" (click)="deleteTodo($event)"></i>
             <div class="card-title">
               <h4>{{ todoItem.title | uppercase }}</h4>
             </div>
             <div class="card-body">
-                <div>
-                  <b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" : "Low"}}
-                </div>
-                <div><b>Completed On</b> {{ todoItem.dateCompleted | date }}</div>
-                <div><b>Category:</b> {{ todoItem.category }}</div>
-                <div><b>Location:</b> {{ todoItem.location }}</div>
-                <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+              <div>
+                <b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" : "Low"}}
+              </div>
+              <div><b>Completed On</b> {{ todoItem.dateCompleted | date }}</div>
+              <div><b>Category:</b> {{ todoItem.category }}</div>
+              <div><b>Location:</b> {{ todoItem.location }}</div>
+              <div *ngIf="todoItem.details"><b>Details:</b> {{ todoItem.details }}</div>
+            </div>
           </div>
         </div>
       </div>
