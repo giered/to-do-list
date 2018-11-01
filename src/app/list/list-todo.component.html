@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="card-text" card-details>
-          <div><b>Priority:</b> {{ todoItem.priority === 1 ? "High" : todoItem.priority === 2 ? "Medium" :
+          <div><b>Priority:</b> {{ todoItem.priority == 1 ? "High" : todoItem.priority == 2 ? "Medium" :
             "Low"}}</div>
           <div><b>Due By:</b> {{ todoItem.dueDate | date }}</div>
           <div><b>Category:</b> {{ todoItem.category }}</div>

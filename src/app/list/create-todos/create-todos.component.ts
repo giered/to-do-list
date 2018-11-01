@@ -12,11 +12,13 @@ import { ITodo } from '../list-todo.model';
   selector: 'td-create-todos',
   templateUrl: './create-todos.component.html',
   styleUrls: ['./create-todos.component.css'],
-  providers: [{provide: NgbDateParserFormatter, useClass: NgbDateENParserFormatter}]
+  providers: [
+    {provide: NgbDateParserFormatter, useClass: NgbDateENParserFormatter}
+  ]
 })
 export class CreateTodosComponent implements OnInit {
   model: NgbDateStruct;
-  date: {day: number, month: number, year: number};
+  date: {year: number, month: number, day: number };
   categories: string[];
   locations: string[];
   minimumDate: NgbDateStruct;
@@ -45,7 +47,7 @@ export class CreateTodosComponent implements OnInit {
      private listService: TodoListService, private modalService: NgbModal) {}
 
   /// Retrieve the list of categories and locations from the list service.
-  ngOnInit(): void {
+  ngOnInit() {
     this.categories = this.listService.getCategories();
     this.locations = this.listService.getLocations();
 
@@ -68,7 +70,7 @@ export class CreateTodosComponent implements OnInit {
       title: formValues.title,
       priority: formValues.priority,
       category: formValues.category,
-      dueDate: new Date(formValues.dueDate.year, formValues.dueDate.month, formValues.dueDate.day),
+      dueDate: new Date(formValues.dueDate.year, formValues.dueDate.month - 1, formValues.dueDate.day),
       completed: false,
       location: formValues.location,
       details: formValues.details,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITodo } from '../list-todo.model';
+import { calcBindingFlags } from '@angular/core/src/view/util';
 
 @Injectable()
 export class TodoListService {
@@ -17,22 +18,24 @@ export class TodoListService {
   }
 
   getCategories() {
-    CATEGORIES = [];
-    TODOS.forEach(function(todoItem) {
-      if (CATEGORIES.indexOf(todoItem.category) === -1) {
-        CATEGORIES.push(todoItem.category);
-      }
-    });
+    if (CATEGORIES.length === 0) {
+      TODOS.forEach(function(todoItem) {
+        if (CATEGORIES.indexOf(todoItem.category) === -1) {
+          CATEGORIES.push(todoItem.category);
+        }
+      });
+    }
     CATEGORIES.sort();
     return CATEGORIES;
   }
   getLocations() {
-    LOCATIONS = [];
-    TODOS.forEach(function(todoItem) {
-      if (LOCATIONS.indexOf(todoItem.location) === -1) {
-        LOCATIONS.push(todoItem.location);
-      }
-    });
+    if (LOCATIONS.length === 0) {
+      TODOS.forEach(function(todoItem) {
+        if (LOCATIONS.indexOf(todoItem.location) === -1) {
+          LOCATIONS.push(todoItem.location);
+        }
+      });
+    }
     LOCATIONS.sort();
     return LOCATIONS;
   }
@@ -42,14 +45,18 @@ export class TodoListService {
   }
 
   addCategory(value: string) {
-    value = value[0].toUpperCase() + value.slice(1);
-    CATEGORIES.push(value);
+    value = value[0].toUpperCase() + value.slice(1).toLowerCase();
+    if	(CATEGORIES.indexOf(value) === -1) {
+      CATEGORIES.push(value);
+    }
     CATEGORIES.sort();
   }
 
   addLocation(value: string) {
-    value = value[0].toUpperCase() + value.slice(1);
-    LOCATIONS.push(value);
+    value = value[0].toUpperCase() + value.slice(1).toLowerCase();
+    if (LOCATIONS.indexOf(value) === -1) {
+      LOCATIONS.push(value);
+    }
     LOCATIONS.sort();
   }
 

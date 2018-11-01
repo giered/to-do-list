@@ -1,4 +1,4 @@
-<div [routerLink]="['/todo/new']">
+<div>
   <h1>New To Do</h1>
   <hr />
   <div class="row">
@@ -29,7 +29,7 @@
           <div class="input-group">
             <select formControlName="category" required class="form-control">
               <option value="">Select category...</option>
-              <option *ngFor="let category of categories; let i = index" value="{{i}}">{{category}}</option>
+              <option *ngFor="let category of categories" value={{category}}>{{category}}</option>
             </select>
             <div class="input-group-append">
               <button type="button" class="btn btn-secondary" (click)="createCategory()">Add New Category</button>
@@ -54,7 +54,7 @@
           <div class="input-group">
             <select formControlName="location" required class="form-control">
               <option value="">Select location...</option>
-              <option *ngFor="let location of locations; let i = index" value={{i}}>{{location}}</option>
+              <option *ngFor="let location of locations" value={{location}}>{{location}}</option>
             </select>
             <div class="input-group-append">
               <button type="button" class="btn btn-secondary" (click)="createLocation()">Add New Location</button>
