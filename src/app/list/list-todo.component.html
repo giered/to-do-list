@@ -6,7 +6,7 @@
     <div class="col-md-11">
       <td-collapse>
         <div card-head>
-          <em *ngIf="todoItem.dueDate <= currentDate" class="text-right">PAST DUE!</em>
+          <em *ngIf="todoItem.dueDate < currentDate" class="text-right">PAST DUE!</em>
           <div class="card-body">
             <div [ngClass]="{
               'bg-warning': todoItem.dueDate.toLocaleString() === tomorrowDate.toLocaleString(),

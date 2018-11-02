@@ -32,13 +32,12 @@ export class TodoListComponent implements OnChanges {
   filterTodoCategories(filter: string) {
     if (filter === 'all') {
       this.visibleTodoItems = this.todoItems.slice(0);
-      this.visibleTodoItems.sort(sortByPriority);
     } else {
       this.visibleTodoItems = this.todoItems.filter(todoItem => {
         return todoItem.category === filter;
       });
-      this.visibleTodoItems.sort(sortByPriority);
     }
+    this.visibleTodoItems.sort(sortByPriority);
   }
 
   filterTodoLocations(filter: string) {
@@ -60,12 +59,12 @@ export class TodoListComponent implements OnChanges {
 /// Sort the array based on the priority of the item.
 function sortByPriority(s1: ITodo, s2: ITodo) {
   if (s1.priority < s2.priority) {
-    return 0;
+    return -1;
   } else if (s1.priority > s2.priority) {
     return 1;
   } else {
     if (s1.dueDate > s2.dueDate) {
-      return 1;
+      return 0;
     }
     return -1;
   }
